@@ -9,7 +9,7 @@ create database grupo19;
 
 use grupo19;
 
-drop table if exists grupo19.usuario;
+drop table is exists grupo19.usuario;
 
 create table grupo19.usuario (
     id_usuario int auto_increment not null,
