@@ -2,12 +2,10 @@ import java.util.Scanner;
 
 public class InterfaceConsola{
 
-    private Scanner scan;
-    private AccionesBD acbd; 
+    private Scanner scan; 
 
     public InterfaceConsola(){
         scan = new Scanner(System.in);
-        acbd = new AccionesBD();
     }
 
     public void iniciar(){
@@ -22,10 +20,10 @@ public class InterfaceConsola{
 
     private void mostrarMenu(){
         System.out.println("\n ¡BIENVENIDO AL MENU PRINCIPAL!!!!!!!!!!!");
-        System.out.println("Precione 1 para insertar un usuario a la BD");
-        System.out.println("Precione 2 para eliminar un reclamo de la BD");
-        System.out.println("Precione 3 para eliminar un listar los reclamos con la cantidad de rellamadas");
-        System.out.println("Precione 10 para salir del menu e ir a ponernos un 10 :D");
+        System.out.println("Presione 1 para insertar un usuario a la BD");
+        System.out.println("Presione 2 para eliminar un reclamo de la BD");
+        System.out.println("Presione 3 para eliminar un listar los reclamos con la cantidad de rellamadas");
+        System.out.println("Presione 10 para salir del menu e ir a ponernos un 10 :D");
     }
 
     private int leerOpcion(){
@@ -51,18 +49,18 @@ public class InterfaceConsola{
         int tel = Integer.parseInt(scan.nextLine());
         System.out.println("Ingrese la direccion del usuario: ");
         String dir = scan.nextLine();
-        acbd.insertUsuario(id, tel, dir);
+        AccionesBD.insertUsuario(id, tel, dir);
     }
 
     private void eliminar(){
         System.out.println("Ingrese el nro del reclamo que desee eliminar: ");
         int nro = Integer.parseInt(scan.nextLine());
-        acbd.eliminarReclamo(nro);
+        AccionesBD.eliminarReclamo(nro);
     }
 
     private void listar(){
         System.out.println("Ingrese el id del usuario del que desee obtener la lista: ");
         int id = Integer.parseInt(scan.nextLine());
-        acbd.listar(id);
+        AccionesBD.listar(id);
     }
 }

@@ -1,11 +1,10 @@
 import java.sql.*;
-import confg.ConexcionBD;
 
 public class AccionesBD {
     
     public static void insertUsuario(int id, int tel, String dir){
         String sql = "insert into grupo19.usuario (id_usuario, telefono, direccion) values (?, ?, ?)";
-        try (Connection conexion = ConexcionBD.conectar();
+        try (Connection conexion = ConexionBD.getConnection();
             PreparedStatement pstmt = conexion.prepareStatement(sql)) {
                 pstmt.setInt(1, id);
                 pstmt.setInt(2, tel);
@@ -20,7 +19,7 @@ public class AccionesBD {
 
     public static void eliminarReclamo(int nro){
         String sql = "delete from grupo19.reclamo where nro_reclamo = ?";
-        try(Connection cone = ConexcionBD.conectar(); 
+        try(Connection cone = ConexionBD.getConnection(); 
             PreparedStatement pstm = cone.prepareStatement(sql) 
         ){
             pstm.setInt(1, nro);
@@ -40,7 +39,7 @@ public class AccionesBD {
     public static void listar(int id){
         String sql = "select l.nro_llamada, l.nro_reclamo, count(l.nro_reclamo) from (grupo19.llamada l inner join grupo19.reclamo r on l.nro_reclamo = r.nro_reclamo) where r.id_usuario = ? group by l.nro_llamada, l.nro_reclamo";
 
-        try(Connection con = ConexcionBD.conectar(); 
+        try(Connection con = ConexionBD.getConnection(); 
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery()
         ){
